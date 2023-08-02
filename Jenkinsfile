@@ -17,11 +17,14 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
+                    sh "aws s3 ls"
                     withEnv(["ASSET_BUCKET_NAME=${env.ASSET_BUCKET_NAME}"]) {
                         sh "node source/uploadFilesS3.js"
                     }
                 }
             }
         }
+
+        
     }
 }
