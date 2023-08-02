@@ -9,6 +9,7 @@ let directoryFiles = [];
 
 const getFilesRecursively = (directory) => {
   const filesInDirectory = fs.readdirSync(directory);
+  console.log(filesInDirectory)
   for (const file of filesInDirectory) {
     const absolute = path.join(directory, file);
     if (fs.statSync(absolute).isDirectory()) {
@@ -17,12 +18,14 @@ const getFilesRecursively = (directory) => {
         directoryFiles.push(absolute);
     }
   }
+  directoryFiles = directoryFiles.map(file =>{
+    return file.replace('source/', '')
+  })
 };
 
-getFilesRecursively('resources')
+getFilesRecursively('source/resources')
 
 // #endregion
-
 
 
 // READ grunt-cache-bust.json
