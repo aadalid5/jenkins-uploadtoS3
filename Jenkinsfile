@@ -13,8 +13,8 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 sh "cd source"
-                sh "npm i"
                 sh "ls"
+                sh "npm i"
             }
         }
     }
