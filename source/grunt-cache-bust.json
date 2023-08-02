@@ -1,0 +1,10 @@
+{
+    "assets": {
+        "resources/css/style.css": "resources/css/style_a8a.css",
+        "resources/css/piano/piano.css": "resources/css/piano/piano_c17.css"
+    },
+    "refFiles": [
+        "website/pages/academic-subscriptions/page-metadata.xml",
+        "website/pages/access-code-activation/page-metadata.xml"
+    ]
+}
