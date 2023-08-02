@@ -19,7 +19,7 @@ const getFilesRecursively = (directory) => {
   }
 };
 
-getFilesRecursively('source/resources')
+getFilesRecursively('resources')
 
 // #endregion
 

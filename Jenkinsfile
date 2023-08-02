@@ -13,7 +13,8 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
-                    sh "node source/uploadFilesS3.js"
+                    sh "cd source"
+                    sh "node uploadFilesS3.js"
                 }
             }
         }
