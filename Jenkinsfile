@@ -3,7 +3,7 @@ pipeline {
     tools {nodejs 'node16'}
 
     environment {
-        ASSET_BUCKET_NAME = 'hbrg-prod'
+        ASSET_BUCKET_NAME = 'demo-cloudfront-ariel-v1'
     }
 
     stages {
@@ -17,7 +17,9 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
-                    sh "aws s3 ls"
+                    sh 'mkdir upload'
+                    sh 'cp -r source/resources upload/resources'
+
                     withEnv(["ASSET_BUCKET_NAME=${env.ASSET_BUCKET_NAME}"]) {
                         sh "node source/uploadFilesS3.js"
                     }

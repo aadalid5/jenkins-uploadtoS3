@@ -20,22 +20,24 @@ const getFilesRecursively = (directory) => {
     })
 };
 
-// Retrieve files in a directory
-getFilesRecursively('source/resources')
+// 1. Retrieve files in a directory
+getFilesRecursively('upload/resources')
 
 
-// READ grunt-cache-bust.json
+// 2. READ grunt-cache-bust.json
 const cache_busted = Object.values(grunt_cache_bust.assets)
 
-// ITERATE over files in directory
+// 3. ITERATE over files in directory and upload files to S3
 directoryFiles.forEach(file=>{
     if(cache_busted.includes(file)){
-        console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public,no-cache`)
-        // sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public, no-cache`
+        // console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public,no-cache`)
+        console.log('with cache', file)
+        sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public, no-cache`
     }
     else {
-        console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`)
-        // sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`
+        // console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`)
+        console.log('WithOUT cache', file)
+        sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`
     }
 })
 
