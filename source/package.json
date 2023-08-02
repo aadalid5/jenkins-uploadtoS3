@@ -1,11 +1,12 @@
 {
   "name": "source",
   "version": "1.0.0",
-  "description": "",
   "main": "uploadFilesS3.js",
   "scripts": {
-    "uploadS3":"node uploadFilesS3.js"
+    "uploadS3": "node uploadFilesS3.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
 }
