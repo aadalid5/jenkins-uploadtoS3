@@ -16,7 +16,7 @@ const getFilesRecursively = (directory) => {
       }
     }
     directoryFiles = directoryFiles.map(file =>{
-      return file.replace('source/', '')
+      return file.replace('upload/', '')
     })
 };
 
