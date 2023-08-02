@@ -9,7 +9,7 @@ let directoryFiles = [];
 
 const getFilesRecursively = (directory) => {
   const filesInDirectory = fs.readdirSync(directory);
-  console.log(filesInDirectory)
+
   for (const file of filesInDirectory) {
     const absolute = path.join(directory, file);
     if (fs.statSync(absolute).isDirectory()) {
@@ -24,7 +24,7 @@ const getFilesRecursively = (directory) => {
 };
 
 getFilesRecursively('source/resources')
-
+console.log(directoryFiles);
 // #endregion
 
 
@@ -35,15 +35,16 @@ const cache_busted = Object.values(grunt_cache_bust.assets)
 // ITERATE over files in directory
 directoryFiles.forEach(file=>{
     if(cache_busted.includes(file)){
-        console.log('aws s3 copy cache-control ', file)
+        console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public,no-cache`)
+        // sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file} --cache-control=public, no-cache`
     }
     else {
-        console.log('aws s3 copy', file)
+        console.log(`aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`)
+        // sh `aws s3 cp ../upload/${file} s3://${process.env.ASSET_BUCKET_NAME}/${file}`
     }
 })
 
 
 
 // const command = "aws iam list-users"
-// console.log(homedir)
 // console.log(execSync(command).toString())

@@ -2,6 +2,10 @@ pipeline {
     agent any
     tools {nodejs 'node16'}
 
+    environment {
+        ASSET_BUCKET_NAME = 'hbrg-prod'
+    }
+
     stages {
         stage('build') {
             steps {
@@ -13,7 +17,9 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
-                    sh "node source/uploadFilesS3.js"
+                    withEnv(["ASSET_BUCKET_NAME=${env.ASSET_BUCKET_NAME}"]) {
+                        sh "node source/uploadFilesS3.js"
+                    }
                 }
             }
         }
