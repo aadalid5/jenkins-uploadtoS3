@@ -13,8 +13,7 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 sh "cd source"
-                sh "npm run uploadS3"
-                sh "cd .."
+                sh "ls"
             }
         }
     }
