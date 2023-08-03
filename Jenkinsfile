@@ -17,7 +17,7 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
-                    sh 'mkdir upload'
+                    sh 'rm -rf upload; mkdir upload'
                     sh 'cp -r source/resources upload/resources'
 
                     withEnv(["ASSET_BUCKET_NAME=${env.ASSET_BUCKET_NAME}"]) {
