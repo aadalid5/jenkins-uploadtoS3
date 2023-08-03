@@ -3,8 +3,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 const gruntCacheBustJSON = require('./resources/grunt-cache-bust.json');
 
+let resourceFiles = [];
 const getFilesInDirectory = (directory) => {
-    let resourceFiles = [];
     const filesInDirectory = fs.readdirSync(directory);
 
     filesInDirectory.forEach((file) => {
@@ -19,8 +19,6 @@ const getFilesInDirectory = (directory) => {
     resourceFiles = resourceFiles.map((file) => {
         return file.replace('upload/', '');
     });
-
-    return resourceFiles;
 };
 
 const uploadAwsS3 = (file, withCacheDirective) => {
@@ -31,7 +29,7 @@ const uploadAwsS3 = (file, withCacheDirective) => {
 
 const uploadToS3 = (directory) => {
     // 1. Retrieve files in the directory
-    const resourceFiles = getFilesInDirectory(directory);
+    getFilesInDirectory(directory);
 
     // 2. Get the resources that were cache busted from grunt-cache-bust.json
     const cacheBustedResources = Object.values(gruntCacheBustJSON.assets);
