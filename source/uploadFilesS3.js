@@ -38,9 +38,11 @@ const uploadToS3 = (directory) => {
     // 3. Iterate over files in the directory and upload them to S3
     resourceFiles.forEach((resource) => {
         if (cacheBustedResources.includes(resource)) {
-            execSync(uploadAwsS3(resource, true));
+            console.log("with Cache", resource);
+            //execSync(uploadAwsS3(resource, true));
         } else {
-            execSync(uploadAwsS3(resource, false));
+            console.log("withOUT Cache", resource);
+            //execSync(uploadAwsS3(resource, false));
         }
     });
 }
