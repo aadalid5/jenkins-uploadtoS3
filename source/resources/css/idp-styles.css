@@ -1,0 +1,1138 @@
+/**
+ * reCaptcha z-index
+ * This is treated as a site warning according to the IAB
+ * guidelines (5,000,000 - 5,999,999). This allows the
+ * reCaptcha privacy policy to display over most ads.
+ */
+/******************************
+SITE BREAKPOINTS (EXCEPT FOR ARTICLE PAGE)
+The following breakpoints are used everywhere but the
+article pages.
+******************************/
+/******************************
+ARTICLE PAGE BREAKPOINTS
+During the article page redesign effort, UX introduced a new set of breakpoints
+to be applied to the article templates only. There are 3 breakpoints to consider
+for standard articles, and 2 breakpoints to consider for premium articles.
+******************************/
+/******************************
+MEDIA QUERY MIXIN
+Use the following mixin
+******************************/
+/******************************
+USE screen-max-width() SPARINGLY!
+
+Best practice is to be "mobile-first". That means the default styling for a
+component, page, etc. should be for its mobile state, and responsive styling
+should only use the screen-min-width() mixin for the next largest relevant
+breakpoints.
+The first instinct is to style around the desktop state and use media queries to
+implement mobile styles, but this is wrong.
+// TODO: There are currently variables and functions throughout the app labeled
+"mobile-only". This is wrong, and should be refactored around the "mobile-first"
+concept.
+******************************/
+.font-gt-america {
+  font-family: "GT America", Helvetica, Arial; }
+
+.font-roboto-slab {
+  font-family: "Roboto Slab", Georgia, "Times New Roman"; }
+
+.font-roboto-slab-compressed {
+  font-family: "Roboto Slab Thin", Georgia, "Times New Roman"; }
+
+.font-lava-std {
+  font-family: "Lava Std", Georgia, "Times New Roman"; }
+
+.font-tiempos-headline {
+  font-family: "Tiempos Headline", Georgia, "Times New Roman"; }
+
+.font-tiempos-text {
+  font-family: "Tiempos Text", Georgia, "Times New Roman"; }
+
+.content-area--article ul:not(.byline-list),
+.content-area--article ol,
+.content-area--article dl {
+  font-family: "Lava Std", Georgia, "Times New Roman"; }
+
+.caption,
+.credit,
+.artworkcaption p,
+.description-text {
+  font-family: "GT America", Helvetica, Arial; }
+  .caption li,
+  .credit li,
+  .artworkcaption p li,
+  .description-text li {
+    font-family: "GT America", Helvetica, Arial; }
+
+.sans-serif-list,
+.link-list {
+  font-family: "GT America", Helvetica, Arial; }
+  .sans-serif-list li,
+  .link-list li {
+    font-family: "GT America", Helvetica, Arial;
+    font-size: inherit; }
+
+.font-whitney,
+.font-whitney p {
+  font-family: "GT America", Helvetica, Arial; }
+
+.font-whitney-black {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 800;
+  font-style: normal; }
+
+.font-national-compressed {
+  font-family: "GT America", Helvetica, Arial; }
+
+.font-national {
+  font-family: "GT America", Helvetica, Arial; }
+
+.font-sans-serif-light, .font-whitney-light {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 200;
+  font-style: normal; }
+
+.font-sans-serif-regular, .font-whitney-book {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 400;
+  font-style: normal; }
+
+.font-sans-serif-bold, .font-whitney-bold {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 700;
+  font-style: normal; }
+
+.font-serif {
+  font-family: "Roboto Slab Thin", Georgia, "Times New Roman" !important; }
+  .font-serif li {
+    font-family: "Roboto Slab Thin", Georgia, "Times New Roman"; }
+
+.font-serif {
+  font-family: "Lava Std", Georgia, "Times New Roman" !important; }
+  .font-serif li {
+    font-family: "Lava Std", Georgia, "Times New Roman"; }
+
+.font-sans-serif {
+  font-family: "GT America Condensed", Helvetica, Arial !important; }
+  .font-sans-serif li {
+    font-family: "GT America Condensed", Helvetica, Arial; }
+
+.font-sans-serif {
+  font-family: "GT America", Helvetica, Arial !important; }
+  .font-sans-serif li {
+    font-family: "GT America", Helvetica, Arial; }
+
+.caption {
+  color: #505050;
+  font-weight: 400;
+  font-size: 0.625rem;
+  margin-top: 0.5rem;
+  line-height: 0.06875rem; }
+
+.credit {
+  color: #a0a0a0;
+  font-weight: 200;
+  font-size: 0.625rem;
+  margin-top: 0.5rem;
+  line-height: 0.06875rem; }
+
+.artworkcaption {
+  font-weight: 200;
+  font-size: 0.6875rem;
+  color: #666;
+  line-height: 0.8125rem;
+  padding-top: 0.375rem; }
+
+.disclaimer {
+  font-weight: 200;
+  font-size: 0.75rem;
+  font-family: "GT America", Helvetica, Arial;
+  line-height: 0.8125rem; }
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  font-weight: 900; }
+
+/* weight utility classes */
+/* see fonts _scss files for available weights */
+/* (not all weights available for all typefaces, "book"/"normal" varies by typeface) */
+.font-thin {
+  font-weight: 100 !important; }
+
+.font-light {
+  font-weight: 200 !important; }
+
+.font-weight-book {
+  font-weight: 300 !important; }
+
+.font-weight-normal {
+  font-weight: 400 !important; }
+
+.font-weight-medium {
+  font-weight: 500 !important; }
+
+.font-weight-semibold {
+  font-weight: 600 !important; }
+
+.font-bold {
+  font-weight: 700 !important; }
+
+.font-heavy {
+  font-weight: 900 !important; }
+
+.font-size-xxlarge {
+  font-size: 1.5rem !important; }
+  @media only screen and (min-width: 48rem), print {
+    .font-size-xxlarge {
+      font-size: 1.75rem !important; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .font-size-xxlarge {
+      font-size: 1.875rem !important; } }
+
+.font-size-xlarge {
+  font-size: 1.375rem !important; }
+  @media only screen and (min-width: 48rem), print {
+    .font-size-xlarge {
+      font-size: 1.5625rem !important; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .font-size-xlarge {
+      font-size: 1.625rem !important; } }
+
+.font-size-larger-x1 {
+  font-size: 1.3125rem; }
+  @media only screen and (min-width: 48rem), print {
+    .font-size-larger-x1 {
+      font-size: 1.4375rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .font-size-larger-x1 {
+      font-size: 1.5rem; } }
+
+.font-size-larger {
+  font-size: 1.125rem !important; }
+  @media only screen and (min-width: 48rem), print {
+    .font-size-larger {
+      font-size: 1.3125rem !important; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .font-size-larger {
+      font-size: 1.375rem !important; } }
+
+.font-size-large {
+  font-size: 1.125rem !important; }
+
+.font-size-default {
+  font-size: 1rem !important; }
+
+.font-size-small {
+  font-size: 0.875rem !important; }
+
+.font-size-xsmall {
+  font-size: 0.75rem !important; }
+
+.font-size-78 {
+  font-size: 4.875rem !important; }
+
+.font-size-32 {
+  font-size: 2rem !important; }
+
+.font-size-30 {
+  font-size: 1.875rem !important; }
+
+.font-size-24 {
+  font-size: 1.5rem !important; }
+
+.font-size-22 {
+  font-size: 1.375rem !important; }
+
+.font-size-21 {
+  font-size: 1.3125rem !important; }
+
+.font-size-20 {
+  font-size: 1.25rem !important; }
+
+.font-size-19 {
+  font-size: 1.1875rem !important; }
+
+.font-size-18 {
+  font-size: 1.125rem !important; }
+
+.font-size-17 {
+  font-size: 1.0625rem !important; }
+
+.font-size-16 {
+  font-size: 1rem !important; }
+
+.font-size-15 {
+  font-size: 0.9375rem !important; }
+
+.font-size-14 {
+  font-size: 0.875rem !important; }
+
+.font-size-13 {
+  font-size: 0.8125rem !important; }
+
+.font-size-12 {
+  font-size: 0.75rem !important; }
+
+.font-size-11 {
+  font-size: 0.6875rem !important; }
+
+.font-size-10 {
+  font-size: 0.625rem !important; }
+
+.font-size-9 {
+  font-size: 0.5625rem !important; }
+
+.font-size-100pct {
+  font-size: 100%; }
+
+.font-size-40pct {
+  font-size: 40%; }
+
+h1.normal-hed,
+.normal-hed {
+  font-size: 1.75rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: 0; }
+  @media only screen and (min-width: 48rem), print {
+    h1.normal-hed,
+    .normal-hed {
+      font-size: 2rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    h1.normal-hed,
+    .normal-hed {
+      font-size: 2.125rem; } }
+
+h1.large-hed,
+.large-hed {
+  font-size: 2rem;
+  padding-bottom: 16px;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.0625rem; }
+  @media only screen and (min-width: 48rem), print {
+    h1.large-hed,
+    .large-hed {
+      font-size: 2.625rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    h1.large-hed,
+    .large-hed {
+      font-size: 3rem; } }
+
+h1.xlarge-hed,
+.xlarge-hed {
+  font-size: 2rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.125rem; }
+  @media only screen and (min-width: 48rem), print {
+    h1.xlarge-hed,
+    .xlarge-hed {
+      font-size: 2.5rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    h1.xlarge-hed,
+    .xlarge-hed {
+      font-size: 2.875rem; } }
+
+h1.xxlarge-hed,
+.xxlarge-hed {
+  font-size: 3rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.125rem; }
+  @media only screen and (min-width: 48rem), print {
+    h1.xxlarge-hed,
+    .xxlarge-hed {
+      font-size: 4rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    h1.xxlarge-hed,
+    .xxlarge-hed {
+      font-size: 4.875rem; } }
+
+h1.xxxlarge-hed,
+.xxxlarge-hed {
+  font-size: 3.125rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.125rem; }
+  @media only screen and (min-width: 48rem), print {
+    h1.xxxlarge-hed,
+    .xxxlarge-hed {
+      font-size: 4.375rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    h1.xxxlarge-hed,
+    .xxxlarge-hed {
+      font-size: 5.625rem; } }
+
+.large-hed.subheader,
+.xlarge-hed.subheader,
+.xxlarge-hed.subheader,
+.xxxlarge-hed.subheader,
+.subheader {
+  font-weight: 200; }
+
+.large-hed.subheader,
+.xlarge-hed.subheader,
+.xxlarge-hed.subheader,
+.xxxlarge-hed.subheader {
+  letter-spacing: -0.03125em; }
+
+.article-hed {
+  font-size: 2rem;
+  line-height: 2.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.000625rem; }
+  @media only screen and (min-width: 48rem), print {
+    .article-hed {
+      font-size: 2.5rem;
+      line-height: 2.5625rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .article-hed {
+      font-size: 3.4375rem;
+      line-height: 2.9375rem; } }
+
+.sponsored-article-hed {
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.015em;
+  line-height: 2.2rem; }
+  @media only screen and (min-width: 48rem), print {
+    .sponsored-article-hed {
+      font-size: 2.625rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .sponsored-article-hed {
+      font-size: 3rem; } }
+  @media only screen and (min-width: 48rem), print {
+    .sponsored-article-hed {
+      line-height: 3.125rem; } }
+
+.line-height-very-loose {
+  line-height: 2.2 !important; }
+
+.line-height-loose {
+  line-height: 1.8 !important; }
+
+.line-height-normal {
+  line-height: 1.4 !important; }
+
+.line-height-snug {
+  line-height: 1.25 !important; }
+
+.line-height-more-snug {
+  line-height: 1.0625 !important; }
+
+.line-height-tight {
+  line-height: 1 !important; }
+
+.line-height-very-tight {
+  line-height: 0.9 !important; }
+
+.line-height-very-very-tight {
+  line-height: 0.8 !important; }
+
+.baseline-shift-up-more {
+  position: relative;
+  top: -0.25em; }
+
+.baseline-shift-up {
+  position: relative;
+  top: -0.125em; }
+
+.baseline-shift-down {
+  position: relative;
+  top: 0.125em; }
+
+.baseline-shift-down-more {
+  position: relative;
+  top: 0.25em; }
+
+.spacing-very-wide {
+  letter-spacing: 0.125em !important; }
+
+.spacing-wide {
+  letter-spacing: 0.0625em !important; }
+
+.no-letter-space,
+.spacing-neutral {
+  letter-spacing: 0 !important; }
+
+.spacing-narrow {
+  letter-spacing: -0.03125em !important; }
+
+.spacing-very-narrow {
+  letter-spacing: -0.0625em !important; }
+
+.spacing-very-very-narrow {
+  letter-spacing: -0.09375em !important; }
+
+.letter-spacing-narrow {
+  letter-spacing: -0.0625rem !important; }
+
+.letter-spacing-normal,
+.font-tight {
+  letter-spacing: 0 !important; }
+
+.letter-spacing-wide {
+  letter-spacing: 0.0625rem !important; }
+
+.letter-spacing-very-wide {
+  letter-spacing: 0.125rem !important; }
+
+.font-tighten-slight {
+  letter-spacing: -0.0104166667em; }
+
+.font-tighten-more {
+  letter-spacing: -0.015625em; }
+
+.font-tighten-most {
+  letter-spacing: -0.03125em; }
+
+.font-loosen-more {
+  letter-spacing: 0.015625em; }
+
+.italic,
+.italics,
+.oblique,
+.mediatitle {
+  font-style: italic; }
+
+.font-style-normal {
+  font-style: normal; }
+
+.small-caps {
+  font-variant: small-caps; }
+
+.uppercase {
+  text-transform: uppercase !important; }
+
+.capitalized {
+  text-transform: capitalize !important; }
+
+.lowercase {
+  text-transform: lowercase !important; }
+
+.preserve-case,
+.preservecase,
+.nocase {
+  text-transform: none !important; }
+
+.text-transform-normal {
+  text-transform: normal; }
+
+.nowrap {
+  white-space: nowrap; }
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.is-underlined {
+  text-decoration: underline !important; }
+
+.antialiased {
+  font-smooth: always !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: antialiased !important; }
+
+.non-antialiased {
+  font-smooth: never !important;
+  -moz-osx-font-smoothing: auto !important;
+  -webkit-font-smoothing: none !important; }
+
+.text--align-center {
+  text-align: center; }
+
+.text--align-left {
+  text-align: left !important; }
+
+.section-label {
+  font-weight: 200;
+  font-size: 1.0625rem;
+  text-align: center; }
+  @media only screen and (min-width: 48rem), print {
+    .section-label {
+      font-size: 1.1875rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .section-label {
+      font-size: 1.3125rem; } }
+  .section-label strong {
+    font-weight: 700; }
+
+.article h2 {
+  font-size: 1.3125rem; }
+  @media only screen and (min-width: 48rem), print {
+    .article h2 {
+      font-size: 1.4375rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .article h2 {
+      font-size: 1.5rem; } }
+
+.article h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem; }
+
+.article p {
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  letter-spacing: -0.0104166667em; }
+  @media only screen and (min-width: 48rem), print {
+    .article p {
+      font-size: 1.1875rem;
+      line-height: 1.9375rem; } }
+  .article p a {
+    color: #0787b1; }
+    .article p a:hover {
+      opacity: 0.6; }
+
+.article ul {
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  letter-spacing: -0.0104166667em; }
+  @media only screen and (min-width: 48rem), print {
+    .article ul {
+      font-size: 1.1875rem;
+      line-height: 1.9375rem; } }
+
+.article li {
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  letter-spacing: -0.0104166667em; }
+  @media only screen and (min-width: 48rem), print {
+    .article li {
+      font-size: 1.1875rem;
+      line-height: 1.9375rem; } }
+
+.article-content .article table h6,
+.article-content .article ul h6,
+.article-content .article article-promo h6 {
+  color: #282828 !important; }
+  .article-content .article table h6:hover,
+  .article-content .article ul h6:hover,
+  .article-content .article article-promo h6:hover {
+    opacity: 0.6; }
+
+.article-content .article table li.byline-list,
+.article-content .article ul li.byline-list,
+.article-content .article article-promo li.byline-list {
+  line-height: 0.9; }
+
+.article-content .article table .byline li,
+.article-content .article ul .byline li,
+.article-content .article article-promo .byline li {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #888; }
+
+.article-content .article table .util-share,
+.article-content .article table .util-save,
+.article-content .article ul .util-share,
+.article-content .article ul .util-save,
+.article-content .article article-promo .util-share,
+.article-content .article article-promo .util-save {
+  font-size: 0.75rem; }
+
+.article-content .article ol a {
+  color: #0787b1 !important; }
+  .article-content .article ol a:hover {
+    color: #056280 !important; }
+
+.article-content .article embedded-video .utility a {
+  font-size: 0.75rem; }
+
+.article-content .article embedded-video small {
+  font-size: 0.6875rem; }
+
+.article-larger h2 {
+  font-size: 1.875rem; }
+
+.article-larger h3 {
+  font-size: 1.5625rem;
+  margin-bottom: 0.4rem; }
+
+.article-larger > p,
+.article-larger > ul,
+.article-larger > ol {
+  font-size: 1.1875rem;
+  line-height: 2.15; }
+
+a.blue--link {
+  color: #0787b1; }
+  a.blue--link:hover {
+    color: #0787b1 !important;
+    opacity: 0.6; }
+
+.slug,
+.slug--large,
+.slug--small {
+  font-weight: 700;
+  text-transform: uppercase; }
+  .slug.inverted,
+  .slug--large.inverted,
+  .slug--small.inverted {
+    color: #fff; }
+    .slug.inverted a,
+    .slug--large.inverted a,
+    .slug--small.inverted a {
+      color: #fff; }
+
+.topic,
+.topic--large,
+.topic--small {
+  color: #c82502;
+  letter-spacing: 0.015rem; }
+  .topic a,
+  .topic--large a,
+  .topic--small a {
+    color: #c82502; }
+  .topic.inverted,
+  .topic--large.inverted,
+  .topic--small.inverted {
+    color: #fff; }
+    .topic.inverted a,
+    .topic--large.inverted a,
+    .topic--small.inverted a {
+      color: #fff; }
+
+.topic--large {
+  font-size: 1rem;
+  text-transform: capitalize; }
+
+.topic {
+  text-transform: uppercase; }
+  .topic a {
+    color: #0787b1; }
+    .topic a:hover {
+      opacity: 0.6; }
+
+.stream-item-info {
+  line-height: 1; }
+  .stream-item-info span.topic {
+    font-size: 0.75rem; }
+  .stream-item-info a.topic {
+    font-weight: regular;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #0787b1; }
+    .stream-item-info a.topic:hover {
+      color: #0787b1;
+      opacity: 0.6; }
+  .stream-item-info .content-type {
+    font-size: 0.75rem !important;
+    color: #282828 !important; }
+
+.content-type,
+.content-type--large,
+.content-type--small {
+  text-transform: uppercase; }
+
+.eyebrow,
+.eyebrow--large,
+.eyebrow--small {
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  color: #393d41; }
+
+.eyebrow--tight {
+  text-transform: uppercase;
+  color: #393d41; }
+
+.byline a,
+.byline--large a,
+.byline--small a {
+  color: inherit; }
+
+.stream-item .byline {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #888; }
+  .stream-item .byline a {
+    color: #888; }
+
+.stream-item > h3.hed:hover,
+h4.hed:hover,
+h5.hed > a[href]:hover {
+  opacity: 0.6; }
+
+.panel .byline li {
+  color: #666; }
+
+.slug,
+.topic,
+.content-type,
+.byline,
+ul.byline,
+.stream-item ul.byline,
+.eyebrow,
+.eyebrow--tight {
+  font-size: 0.8125rem; }
+
+.slug--large,
+.topic--large,
+.content-type--large,
+.byline--large,
+ul.byline--large,
+.eyebrow--large {
+  font-size: 1.125rem; }
+
+.slug--small,
+.topic--small,
+.content-type--small,
+.byline--small,
+ul.byline--small,
+.eyebrow--small {
+  font-size: 0.75rem; }
+
+.byline-list {
+  line-height: 1.0625; }
+
+.dek {
+  font-family: "GT America", Helvetica, Arial;
+  line-height: 1.4;
+  font-size: 0.875rem;
+  font-weight: 200;
+  letter-spacing: -0.015625em;
+  color: #000;
+  margin-bottom: 0.375rem; }
+  .dek p {
+    font-family: "GT America", Helvetica, Arial;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin-bottom: 0; }
+
+.message,
+.wp-caption-text {
+  font-family: "GT America", Helvetica, Arial;
+  font-size: 0.9375rem;
+  line-height: 1.4; }
+
+.wp-caption-text {
+  margin-bottom: 0.375rem; }
+
+.product-info {
+  font-family: "GT America", Helvetica, Arial;
+  font-size: 1.125rem;
+  line-height: 1.4; }
+
+.product-text,
+.product-text p {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 400;
+  line-height: 1.1875rem;
+  font-size: 0.90625rem;
+  overflow: hidden; }
+
+.product-text p {
+  font-size: 0.875rem;
+  margin-bottom: 0; }
+
+.description-text {
+  font-size: 0.9375rem;
+  letter-spacing: -0.015625em;
+  font-weight: 200; }
+
+.utility {
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 200;
+  font-size: 0.75rem; }
+  .utility a {
+    color: #282828 !important;
+    transition: color 300ms ease-out;
+    text-transform: capitalize; }
+    .utility a i {
+      color: #282828; }
+    .utility a:hover {
+      opacity: 0.6; }
+
+.publication-date {
+  font-family: "GT America", Helvetica, Arial;
+  font-size: 0.8125rem; }
+
+.pubdate {
+  font-size: 0.75rem;
+  color: #282828;
+  text-transform: uppercase; }
+
+.sponsor-label {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: bold; }
+  .sponsor-label a {
+    color: #666; }
+
+.alt-action {
+  font-family: "GT America", Helvetica, Arial; }
+
+a.alt-action {
+  color: #c82502; }
+
+.price,
+.price--large,
+.price--small,
+.price-text,
+.price-text--large,
+.price-text--small {
+  font-family: "GT America", Helvetica, Arial;
+  letter-spacing: -0.0625rem; }
+  .price:not(strong),
+  .price--large:not(strong),
+  .price--small:not(strong),
+  .price-text:not(strong),
+  .price-text--large:not(strong),
+  .price-text--small:not(strong) {
+    font-weight: 200; }
+
+.price::before,
+.price--large::before,
+.price--small::before {
+  content: "$"; }
+
+.price--small,
+.price-text--small {
+  font-size: 0.8125rem; }
+
+.price,
+.price-text {
+  font-size: 1.25rem;
+  font-weight: 100; }
+
+.price--large,
+.price-text--large {
+  font-size: 1.5rem; }
+  @media only screen and (min-width: 48rem), print {
+    .price--large,
+    .price-text--large {
+      font-size: 1.75rem; } }
+  @media only screen and (min-width: 64.0625rem) {
+    .price--large,
+    .price-text--large {
+      font-size: 1.875rem; } }
+
+.label {
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase; }
+
+.product-hed {
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  color: #abafb0;
+  font-weight: bold; }
+
+.navigation-header,
+.visual-library-header {
+  transition: font-size 0.3s ease-in-out; }
+
+.interviewname,
+.intervieweename {
+  font-family: "GT America", Helvetica, Arial;
+  font-size: 1.125rem;
+  line-height: 1.8125rem;
+  letter-spacing: -0.0104166667em;
+  font-weight: bold; }
+  @media only screen and (min-width: 48rem), print {
+    .interviewname,
+    .intervieweename {
+      font-size: 1.1875rem;
+      line-height: 1.9375rem; } }
+
+.question {
+  font-size: 1.125rem;
+  letter-spacing: -0.0104166667em;
+  line-height: 1.4;
+  font-family: "GT America", Helvetica, Arial;
+  font-weight: 700;
+  display: block; }
+  @media only screen and (min-width: 48rem), print {
+    .question {
+      font-size: 1.1875rem;
+      line-height: 1.9375rem; } }
+
+p > .question,
+p > .answer {
+  margin-bottom: -0.75rem; }
+
+.qa {
+  margin-bottom: -0.75rem; }
+
+.qemphasis {
+  font-weight: 700;
+  font-style: italic; }
+
+.insight-center-1 h2,
+.article-content-flex2019 h2 {
+  font-size: 1.1875rem; }
+
+.insight-center-1 h3,
+.article-content-flex2019 h3 {
+  font-size: 1.0625rem;
+  line-height: 1.6315789474; }
+  .insight-center-1 h3.inline-helper,
+  .article-content-flex2019 h3.inline-helper {
+    display: inline; }
+    .insight-center-1 h3.inline-helper + p,
+    .article-content-flex2019 h3.inline-helper + p {
+      display: inline; }
+      .insight-center-1 h3.inline-helper + p::after,
+      .article-content-flex2019 h3.inline-helper + p::after {
+        content: " ";
+        display: block;
+        margin-bottom: 1.25rem; }
+    .insight-center-1 h3.inline-helper::before,
+    .article-content-flex2019 h3.inline-helper::before {
+      content: " ";
+      display: block; }
+
+.insight-center-1 h4.inline-helper,
+.article-content-flex2019 h4.inline-helper {
+  font-size: 1.0625rem;
+  line-height: 1.6315789474;
+  font-weight: normal;
+  font-style: italic;
+  display: inline; }
+  .insight-center-1 h4.inline-helper + p,
+  .article-content-flex2019 h4.inline-helper + p {
+    display: inline; }
+    .insight-center-1 h4.inline-helper + p::after,
+    .article-content-flex2019 h4.inline-helper + p::after {
+      content: " ";
+      display: block;
+      margin-bottom: 1.25rem; }
+  .insight-center-1 h4.inline-helper::before,
+  .article-content-flex2019 h4.inline-helper::before {
+    content: " ";
+    display: block; }
+
+/*******************************************
+BREAKPOINTS
+handle different sets of breakpoints between
+standard and premium articles.
+********************************************/
+@media only screen and (min-width: 48rem) {
+  .insight-center-1 h2,
+  article-content-flex2019[page-subtype="standard"] h2,
+  article-content-flex2019[page-subtype="sponsored-content"] h2 {
+    font-size: 1.3125rem; }
+  .insight-center-1 h3,
+  article-content-flex2019[page-subtype="standard"] h3,
+  article-content-flex2019[page-subtype="sponsored-content"] h3 {
+    font-size: 1.1875rem;
+    line-height: 1.6315789474; }
+    .insight-center-1 h3.inline-helper,
+    article-content-flex2019[page-subtype="standard"] h3.inline-helper,
+    article-content-flex2019[page-subtype="sponsored-content"] h3.inline-helper {
+      margin-bottom: 0 !important; }
+      .insight-center-1 h3.inline-helper + p::after,
+      article-content-flex2019[page-subtype="standard"] h3.inline-helper + p::after,
+      article-content-flex2019[page-subtype="sponsored-content"] h3.inline-helper + p::after {
+        margin-bottom: 1.5rem; }
+  .insight-center-1 h4.inline-helper,
+  article-content-flex2019[page-subtype="standard"] h4.inline-helper,
+  article-content-flex2019[page-subtype="sponsored-content"] h4.inline-helper {
+    font-size: 1.1875rem;
+    line-height: 1.6315789474;
+    margin-bottom: 0 !important; }
+    .insight-center-1 h4.inline-helper + p::after,
+    article-content-flex2019[page-subtype="standard"] h4.inline-helper + p::after,
+    article-content-flex2019[page-subtype="sponsored-content"] h4.inline-helper + p::after {
+      margin-bottom: 1.5rem; } }
+
+@media only screen and (min-width: 51.125rem) {
+  article-content-flex2019[page-subtype="premium"] h2,
+  article-content-flex2019[page-subtype="big-idea"] h2,
+  article-content-flex2019[page-subtype="spotlight"] h2 {
+    font-size: 1.3125rem; }
+  article-content-flex2019[page-subtype="premium"] h3,
+  article-content-flex2019[page-subtype="big-idea"] h3,
+  article-content-flex2019[page-subtype="spotlight"] h3 {
+    font-size: 1.1875rem;
+    line-height: 1.6315789474; }
+    article-content-flex2019[page-subtype="premium"] h3.inline-helper,
+    article-content-flex2019[page-subtype="big-idea"] h3.inline-helper,
+    article-content-flex2019[page-subtype="spotlight"] h3.inline-helper {
+      margin-bottom: 0 !important; }
+      article-content-flex2019[page-subtype="premium"] h3.inline-helper + p::after,
+      article-content-flex2019[page-subtype="big-idea"] h3.inline-helper + p::after,
+      article-content-flex2019[page-subtype="spotlight"] h3.inline-helper + p::after {
+        margin-bottom: 1.5rem; }
+  article-content-flex2019[page-subtype="premium"] h4.inline-helper,
+  article-content-flex2019[page-subtype="big-idea"] h4.inline-helper,
+  article-content-flex2019[page-subtype="spotlight"] h4.inline-helper {
+    font-size: 1.1875rem;
+    line-height: 1.6315789474;
+    margin-bottom: 0 !important; }
+    article-content-flex2019[page-subtype="premium"] h4.inline-helper + p::after,
+    article-content-flex2019[page-subtype="big-idea"] h4.inline-helper + p::after,
+    article-content-flex2019[page-subtype="spotlight"] h4.inline-helper + p::after {
+      margin-bottom: 1.5rem; } }
+
+.flyout::before {
+  border: 0 !important; }
+
+.flyout-container--new {
+  border: 0.0625rem solid #c8c8c8;
+  padding: 1.5rem !important;
+  box-shadow: 0 0 0.75rem 0 rgba(50, 50, 50, 0.1) !important; }
+  .flyout-container--new em {
+    font-style: normal; }
+  .flyout-container--new .flyout-close {
+    float: right;
+    position: initial !important; }
+    .flyout-container--new .flyout-close .icon-times {
+      color: #666 !important; }
+  .flyout-container--new .flyout-header {
+    font-weight: 200;
+    font-size: 1.25rem !important;
+    background: #fff;
+    border: 0;
+    margin: 0.75rem 0 !important;
+    padding: 0.75rem 0 0 !important; }
+
+.modal-overlay--idp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 8001;
+  transition: visibility 0.15s, opacity 0.15s; }
+
+@media only screen and (max-device-width: 47.9375rem) {
+  .flyout-container--new {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    border: 0; }
+  .flyout {
+    max-width: 47.9375rem !important;
+    width: 100vw !important;
+    margin: 0 !important; } }
+
+@media only screen and (max-width: 47.9375rem) {
+  .flyout-container--new {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    border: 0; }
+  .flyout {
+    max-width: 47.9375rem !important;
+    width: 100vw !important;
+    margin: 0 !important; } }
+
+select[disabled]:hover {
+  background-color: #ddd;
+  cursor: default !important; }
+
+.title-ellipses-3 {
+  overflow: hidden;
+  height: 3.125rem;
+  position: relative; }
+/*# sourceMappingURL=idp-styles.css.map */
