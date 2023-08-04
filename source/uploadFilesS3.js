@@ -10,26 +10,24 @@ const uploadAwsS3 = (file, withCacheDirective) => {
 };
 
 
-const getFilesInDirectory = (directory) => {
-    const filesInDirectory = fs.readdirSync(directory);
-
-    filesInDirectory.forEach((file) => {
-        const filePath = path.join(directory, file);
-        if (fs.statSync(filePath).isDirectory()) {
-            getFilesInDirectory(filePath);
-        } else {
-            resourceFiles.push(filePath);
-        }
-    });
-
-    resourceFiles = resourceFiles.map((file) => {
-        return file.replace('upload/', '');
-    });
-};
-
 const uploadToS3 = (directory) => {
     let resourceFiles = [];
+    const getFilesInDirectory = (directory) => {
+        const filesInDirectory = fs.readdirSync(directory);
     
+        filesInDirectory.forEach((file) => {
+            const filePath = path.join(directory, file);
+            if (fs.statSync(filePath).isDirectory()) {
+                getFilesInDirectory(filePath);
+            } else {
+                resourceFiles.push(filePath);
+            }
+        });
+    
+        resourceFiles = resourceFiles.map((file) => {
+            return file.replace('upload/', '');
+        });
+    };
     // 1. Retrieve files in the directory
     getFilesInDirectory(directory);
 
