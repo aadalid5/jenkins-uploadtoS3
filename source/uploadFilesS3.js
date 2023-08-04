@@ -38,10 +38,10 @@ const uploadToS3 = (directory) => {
     resourceFiles.forEach((resource) => {
         if (cacheBustedResources.includes(resource)) {
             console.log("with Cache", resource);
-            //execSync(uploadAwsS3(resource, true));
+           execSync(uploadAwsS3(resource, true));
         } else {
             console.log("withOUT Cache", resource);
-            //execSync(uploadAwsS3(resource, false));
+           execSync(uploadAwsS3(resource, false));
         }
     });
 }
