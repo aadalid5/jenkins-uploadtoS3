@@ -29,10 +29,9 @@ getFilesInDirectory('source/resources')
 const cacheBustedResources = Object.values(gruntCacheBustJSON.assets);
 
 // 3. create folders 'upload' 'uploadCache'
-execSync("rm -rf upload; mkdir upload")
-execSync("cp -r source/resources upload/resources")
-
-execSync("rm -rf uploadCache; mkdir uploadCache")
+// execSync("rm -rf upload; mkdir upload")
+// execSync("cp -r source/resources upload/resources")
+// execSync("rm -rf uploadCache; mkdir uploadCache")
 
 
 // 4. move cache busted files to 'cacheUpload' folder

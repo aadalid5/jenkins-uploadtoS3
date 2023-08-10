@@ -19,10 +19,9 @@ pipeline {
                 script {
                     sh 'rm -rf upload; mkdir upload'
                     sh 'cp -r source/resources upload/resources'
+                    sh 'rm -rf uploadCache; mkdir uploadCache'
 
-                    withEnv(["ASSET_BUCKET_NAME=${env.ASSET_BUCKET_NAME}"]) {
-                        sh "node source/uploadFilesS3.js"
-                    }
+                    sh 'node buildHelpers/moveCacheBustedFiles.js'
                 }
             }
         }
