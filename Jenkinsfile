@@ -22,6 +22,11 @@ pipeline {
                     sh 'rm -rf uploadCache; mkdir uploadCache'
 
                     sh 'node buildHelpers/moveCacheBustedFiles.js'
+
+                    // upload to S3
+                    sh "aws s3 cp ./upload/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive"
+                    sh "aws s3 cp ./uploadCache/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive --cache-control=public,max-age=3153600"
+
                 }
             }
         }
