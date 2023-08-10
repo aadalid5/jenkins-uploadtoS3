@@ -1,7 +1,9 @@
 {
     "assets": {
         "resources/css/style.css": "resources/css/style_a8a.css",
-        "resources/css/piano/piano.css": "resources/css/piano/piano_c17.css"
+        "resources/css/piano/piano.css": "resources/css/piano/piano_c17.css",
+        "resources/js/common.js":"resources/js/common_123.js",
+        "resources/js/pages/academic-offer.js":"resources/js/pages/academic-offer_456.js"
     },
     "refFiles": [
         "website/pages/academic-subscriptions/page-metadata.xml",
