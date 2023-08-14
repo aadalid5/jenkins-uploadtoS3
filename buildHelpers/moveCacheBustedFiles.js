@@ -6,8 +6,10 @@
 const fs = require('fs');
 const path = require('path');
 const gruntCacheBustJSON = require('../source/resources/grunt-cache-bust.json');
+const {argv} = require('node:process')
 
-const destFolder = 'upload-with-cache';
+
+const destFolder = argv[2];
 
 // Read the resources that were cache busted from grunt-cache-bust.json
 const cacheBustedResources = Object.values(gruntCacheBustJSON.assets);

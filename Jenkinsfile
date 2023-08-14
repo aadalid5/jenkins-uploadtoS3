@@ -28,7 +28,7 @@ pipeline {
                     sh 'cp -r source/resources upload/resources'
                     sh 'mkdir upload-with-cache'
 
-                    sh 'node buildHelpers/moveCacheBustedFiles.js'
+                    sh 'node buildHelpers/moveCacheBustedFiles.js upload-with-cache'
 
                     // upload to S3
                     sh "aws s3 cp ./upload/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive"
