@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages {
+        stage("clean WS"){
+            steps {
+                cleanWs()
+            }
+        }
+
         stage('build') {
             steps {
                 sh "node -v"
@@ -17,20 +23,18 @@ pipeline {
         stage ('Copy Artifacts'){
             steps {
                 script {
-                    sh 'rm -rf upload; mkdir upload'
+                    sh 'mkdir upload'
                     sh 'cp -r source/resources upload/resources'
-                    sh 'rm -rf uploadWithCache; mkdir uploadWithCache'
+                    sh 'mkdir upload-with-cache'
 
                     sh 'node buildHelpers/moveCacheBustedFiles.js'
 
                     // upload to S3
                     sh "aws s3 cp ./upload/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive"
-                    sh "aws s3 cp ./uploadWithCache/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive --cache-control=public,max-age=3153600"
+                    sh "aws s3 cp ./upload-with-cache/resources/ s3://${env.ASSET_BUCKET_NAME}/resources/ --recursive --cache-control=public,max-age=3153600"
 
                 }
             }
         }
-
-        
     }
 }
